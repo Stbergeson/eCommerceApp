@@ -1,0 +1,19 @@
+﻿<MudNavMenu>
+    @foreach(var category in _categories)
+    {
+        <MudNavGroup Title="@category.Title" Expanded="true">
+            @foreach(var subCategory in _subCategories.Where(subCat => category.Id == subCat.CategoryId))
+            {
+                <MudNavLink Href="@($"/shop/{subCategory.Id.ToString()}")">@subCategory.Title</MudNavLink>
+            }
+        </MudNavGroup>
+    }
+    
+</MudNavMenu>
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        await GetCategories();
+    }
+}
