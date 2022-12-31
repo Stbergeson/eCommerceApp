@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using eCommerceApp.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,6 +11,11 @@ public class eCommerceAppContext : IdentityDbContext<IdentityUser>
         : base(options)
     {
     }
+
+    public DbSet<Product> Products { get; set; }
+    public DbSet<Category> Categories { get; set; }
+    public DbSet<SubCategory> SubCategories { get; set; }
+    public DbSet<Image> Images { get; set; }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using eCommerceApp.Data;
 
@@ -10,9 +11,11 @@ using eCommerceApp.Data;
 namespace eCommerceApp.Migrations
 {
     [DbContext(typeof(eCommerceAppContext))]
-    partial class eCommerceAppContextModelSnapshot : ModelSnapshot
+    [Migration("20221231190614_addModels")]
+    partial class addModels
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.1");
