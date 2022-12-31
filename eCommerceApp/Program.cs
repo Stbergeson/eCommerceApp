@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using eCommerceApp.Data;
+using MudBlazor.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("eCommerceAppContextConnection") ?? throw new InvalidOperationException("Connection string 'eCommerceAppContextConnection' not found.");
@@ -12,6 +13,8 @@ builder.Services.AddDbContext<eCommerceAppContext>(options => options.UseSqlite(
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<eCommerceAppContext>();
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
+
+builder.Services.AddMudServices();
 
 var app = builder.Build();
 
