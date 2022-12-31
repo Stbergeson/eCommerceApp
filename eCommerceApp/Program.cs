@@ -1,7 +1,15 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using eCommerceApp.Data;
 
 var builder = WebApplication.CreateBuilder(args);
+var connectionString = builder.Configuration.GetConnectionString("eCommerceAppContextConnection") ?? throw new InvalidOperationException("Connection string 'eCommerceAppContextConnection' not found.");
+
+builder.Services.AddDbContext<eCommerceAppContext>(options => options.UseSqlite(connectionString));
+
+builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<eCommerceAppContext>();
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 
